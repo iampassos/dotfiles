@@ -20,15 +20,9 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<CR>"] = cmp.mapping(
-            cmp.mapping.confirm(
-              {
-                behavior = cmp.ConfirmBehavior.Insert,
-                select = true
-              },
-              { "i", "c" })),
+          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
@@ -38,7 +32,7 @@ return {
           { name = 'nvim_lsp_signature_help' },
         }),
         experimental = {
-          ghost_text = true,
+          ghost_text = false,
         },
       })
     end,
