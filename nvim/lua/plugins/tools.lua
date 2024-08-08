@@ -23,36 +23,15 @@ return {
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*",
         callback = function(args)
-          if vim.fn.expand('%:e') == 'ts' then
-            vim.cmd 'TSToolsOrganizeImports sync'
-            vim.cmd 'TSToolsAddMissingImports sync'
+          if vim.fn.expand("%:e") == "ts" then
+            vim.cmd("TSToolsOrganizeImports sync")
+            vim.cmd("TSToolsAddMissingImports sync")
           end
 
           conform.format({
             buf = args.buf,
             async = false,
           })
-        end,
-      })
-    end,
-  },
-  {
-    "mfussenegger/nvim-lint",
-    event = { 'BufReadPre', 'BufNewFile' },
-    config = function()
-      local lint = require("lint")
-
-      lint.linters_by_ft = {
-        javascript = { "eslint" },
-        typescript = { "eslint" },
-      }
-
-      local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
-      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
-        pattern = { "*.js", "*.ts" },
-        group = lint_augroup,
-        callback = function()
-          lint.try_lint()
         end,
       })
     end,
@@ -76,14 +55,28 @@ return {
     config = function()
       require("gitsigns").setup({
         signs = {
-          add          = { text = '┃' },
-          change       = { text = '┃' },
-          delete       = { text = '┃' },
-          topdelete    = { text = '┃' },
-          changedelete = { text = '┃' },
-          untracked    = { text = '┃' },
+          add = { text = "┃" },
+          change = { text = "┃" },
+          delete = { text = "┃" },
+          topdelete = { text = "┃" },
+          changedelete = { text = "┃" },
+          untracked = { text = "┃" },
         },
       })
-    end
+    end,
+  },
+  {
+    "stevearc/oil.nvim",
+    dependencies = { "echasnovski/mini.icons" },
+    config = function()
+      require("oil").setup({
+        columns = { "icon" },
+        view_options = {
+          show_hidden = true,
+        },
+      })
+
+      vim.keymap.set("n", "<space><TAB>", require("oil").toggle_float)
+    end,
   },
 }

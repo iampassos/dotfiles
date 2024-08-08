@@ -16,7 +16,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- This is for wsl2
-if vim.fn.has('wsl') == 1 then
+if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",
     copy = {
@@ -27,12 +27,12 @@ if vim.fn.has('wsl') == 1 then
       ["+"] = {
         "/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe",
         "-c",
-        '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        "[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace(\"`r\", \"\"))",
       },
       ["*"] = {
         "/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe",
         "-c",
-        '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        "[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace(\"`r\", \"\"))",
       },
     },
     cache_enabled = false,

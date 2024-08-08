@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = 'InsertEnter',
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
@@ -28,8 +28,8 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
-          { name = 'buffer' },
-          { name = 'nvim_lsp_signature_help' },
+          { name = "buffer" },
+          { name = "nvim_lsp_signature_help" },
         }),
         experimental = {
           ghost_text = false,
@@ -48,5 +48,5 @@ return {
 
       require("nvim-autopairs").setup()
     end,
-  }
+  },
 }

@@ -2,15 +2,15 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      {
-        "williamboman/mason.nvim",
-        config = true
-      },
+      "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "clangd" },
+      require("mason").setup()
+
+      require("mason-tool-installer").setup({
+        ensure_installed = { "stylua", "lua_ls", "clangd" },
       })
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -19,6 +19,13 @@ return {
 
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+          },
+        },
       })
 
       lspconfig.clangd.setup({
@@ -39,8 +46,8 @@ return {
         settings = {
           complete_function_calls = true,
           expose_as_code_action = "all",
-        }
+        },
       })
-    end
-  }
+    end,
+  },
 }
