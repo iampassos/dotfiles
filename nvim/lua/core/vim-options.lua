@@ -15,29 +15,15 @@ vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- This is for wsl2
-if vim.fn.has("wsl") == 1 then
-  vim.g.clipboard = {
-    name = "WslClipboard",
-    copy = {
-      ["+"] = { "clip.exe" },
-      ["*"] = { "clip.exe" },
-    },
-    paste = {
-      ["+"] = {
-        "/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe",
-        "-c",
-        "[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace(\"`r\", \"\"))",
-      },
-      ["*"] = {
-        "/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe",
-        "-c",
-        "[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace(\"`r\", \"\"))",
-      },
-    },
-    cache_enabled = false,
-  }
-end
-
--- Link NeoVim's clipboard with the computer's one
+-- Clipboard
 vim.opt.clipboard:append("unnamed,unnamedplus")
+
+if vim.fn.has("wsl") == 1 then
+  vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("Yank", { clear = true }),
+
+    callback = function()
+      vim.fn.system("clip.exe", vim.fn.getreg("\""))
+    end,
+  })
+end
