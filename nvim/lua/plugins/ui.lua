@@ -1,12 +1,16 @@
 return {
   {
-    "Shatur/neovim-ayu",
+    "EdenEast/nightfox.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("ayu").setup({})
+      require("nightfox").setup({
+        options = {
+          transparent = true,
+        },
+      })
 
-      vim.cmd.colorscheme("ayu")
+      vim.cmd.colorscheme("carbonfox")
     end,
   },
   {
@@ -15,8 +19,13 @@ return {
     config = function()
       local theme = require("lualine.themes.auto")
 
-      theme.normal.c.bg = nil
-      theme.inactive.c.bg = nil
+      for _, section in pairs(theme) do
+        for sub, style in pairs(section) do
+          if sub ~= "a" then
+            style.bg = nil
+          end
+        end
+      end
 
       require("lualine").setup({
         options = {
@@ -33,7 +42,7 @@ return {
           lualine_y = { "branch" },
           lualine_z = { "location" },
         },
-        extensions = { "neo-tree" },
+        extensions = { "oil", "trouble", "lazy", "fugitive" },
       })
     end,
   },
