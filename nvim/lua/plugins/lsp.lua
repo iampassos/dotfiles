@@ -10,7 +10,7 @@ return {
       require("mason").setup()
 
       require("mason-tool-installer").setup({
-        ensure_installed = { "stylua", "lua_ls", "clangd" },
+        ensure_installed = { "stylua", "lua_ls", "clangd", "jedi-language-server" },
       })
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -29,6 +29,10 @@ return {
       })
 
       lspconfig.clangd.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.jedi_language_server.setup({
         capabilities = capabilities,
       })
 
