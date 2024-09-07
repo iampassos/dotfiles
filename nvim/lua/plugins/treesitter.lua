@@ -1,5 +1,4 @@
 return {
-  "NelsonTLima/vim-portugol-highlight",
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   config = function()
@@ -8,7 +7,7 @@ return {
     configs.setup({
       ensure_installed = { "lua", "c", "typescript", "javascript", "python" },
       auto_install = true,
-      highlight = { enable = true, additional_vim_regex_highlighting = { "portugol" } },
+      highlight = { enable = true },
       indent = { enable = true },
     })
   end,
