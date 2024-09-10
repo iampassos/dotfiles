@@ -15,6 +15,10 @@ vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Status Line
+vim.o.laststatus = 3
+vim.o.statusline = "%f %m %= %l:%L %y"
+
 -- Clipboard
 vim.opt.clipboard:append("unnamed,unnamedplus")
 
