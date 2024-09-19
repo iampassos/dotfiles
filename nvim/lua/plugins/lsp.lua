@@ -34,6 +34,18 @@ return {
 
       lspconfig.pylsp.setup({
         capabilities = capabilities,
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                ignore = { "W391" },
+              },
+              black = {
+                enabled = true,
+              },
+            },
+          },
+        },
       })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

@@ -10,7 +10,6 @@ return {
           javascript = { "prettier" },
           typescript = { "prettier" },
           json = { "prettier" },
-          python = { "black" },
         },
         default_format_opts = {
           lsp_format = "fallback",
