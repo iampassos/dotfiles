@@ -4,7 +4,7 @@ echo "[INSTALL.SH] Starting install..."
 
 DOTFILES_DIR="$HOME/.dotfiles"
 
-PACKAGES=(git stow zsh)
+PACKAGES=(stow zsh)
 
 echo "[PACKAGE_MANAGER] Installing packages: ${PACKAGES[*]}"
 eval "sudo dnf install -y ${PACKAGES[*]}"
