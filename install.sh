@@ -4,10 +4,13 @@ echo "[INSTALL.SH] Starting install..."
 
 DOTFILES_DIR="$HOME/.dotfiles"
 
-PACKAGES=(git stow zsh build-essential)
+PACKAGES=(git stow zsh)
 
 echo "[PACKAGE_MANAGER] Installing packages: ${PACKAGES[*]}"
 eval "sudo dnf install -y ${PACKAGES[*]}"
+
+chsh -s $(which zsh)
+echo "[SYSTEM] Set zsh as default shell"
 
 cd "$DOTFILES_DIR" || exit
 
