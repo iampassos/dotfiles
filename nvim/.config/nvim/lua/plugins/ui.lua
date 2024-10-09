@@ -1,10 +1,32 @@
 return {
   {
-    "folke/tokyonight.nvim",
+    "marko-cerovac/material.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("tokyonight-night")
+      vim.g.material_style = "darker"
+
+      require("material").setup({
+        contrast = {
+          sidebars = true,
+          floating_windows = true,
+          cursor_line = true,
+          non_current_windows = true,
+        },
+        plugins = {
+          "gitsigns",
+          "nvim-cmp",
+          "nvim-web-devicons",
+          "telescope",
+          "trouble",
+        },
+        disable = {
+          colored_cursor = true,
+          background = false,
+        },
+      })
+
+      vim.cmd.colorscheme("material")
     end,
   },
   {
