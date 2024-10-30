@@ -86,4 +86,66 @@ return {
       vim.keymap.set("n", "<space>p", oil.open_preview)
     end,
   },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    dependencies = { "hrsh7th/nvim-cmp" },
+    config = function()
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
+      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+      require("nvim-autopairs").setup()
+    end,
+  },
+  {
+    "aurum77/live-server.nvim",
+    config = function()
+      local status_ok, live_server = pcall(require, "live_server")
+
+      if not status_ok then
+        return
+      end
+
+      live_server.setup({
+        port = 8080,
+        browser_command = "",
+        quiet = false,
+        no_css_inject = false,
+        install_path = vim.fn.stdpath("config") .. "/live-server/",
+      })
+    end,
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    config = function()
+      require("telescope").setup()
+
+      local builtin = require("telescope.builtin")
+
+      vim.keymap.set("n", "<C-p>", builtin.find_files, {})
+    end,
+  },
 }

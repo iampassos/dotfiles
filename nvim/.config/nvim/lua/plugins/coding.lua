@@ -1,5 +1,95 @@
 return {
   {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
+    config = function()
+      require("mason").setup()
+
+      require("mason-tool-installer").setup({
+        ensure_installed = { "stylua", "lua_ls", "clangd", "pylsp", "html-lsp", "css-lsp" },
+      })
+
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      local lspconfig = require("lspconfig")
+
+      lspconfig.lua_ls.setup({
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+          },
+        },
+      })
+
+      lspconfig.html.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.cssls.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.clangd.setup({
+        capabilities = capabilities,
+        filetypes = { "cpp", "c" },
+      })
+
+      lspconfig.pylsp.setup({
+        capabilities = capabilities,
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                ignore = { "W391" },
+              },
+              black = {
+                enabled = true,
+              },
+            },
+          },
+        },
+      })
+
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+    end,
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      require("typescript-tools").setup({
+        settings = {
+          complete_function_calls = true,
+          expose_as_code_action = "all",
+        },
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      local configs = require("nvim-treesitter.configs")
+
+      configs.setup({
+        ensure_installed = { "lua", "c", "typescript", "javascript", "python" },
+        auto_install = true,
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
@@ -35,18 +125,6 @@ return {
           ghost_text = false,
         },
       })
-    end,
-  },
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    dependencies = { "hrsh7th/nvim-cmp" },
-    config = function()
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-
-      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-      require("nvim-autopairs").setup()
     end,
   },
 }
