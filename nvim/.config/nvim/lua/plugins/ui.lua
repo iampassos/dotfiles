@@ -1,34 +1,45 @@
 return {
   {
-    "marko-cerovac/material.nvim",
+    "zaldih/themery.nvim",
     lazy = false,
-    priority = 1000,
     config = function()
-      vim.g.material_style = "darker"
-
-      require("material").setup({
-        contrast = {
-          sidebars = true,
-          floating_windows = true,
-          cursor_line = true,
-          non_current_windows = true,
+      require("themery").setup({
+        themes = {
+          "gruvbox-material",
+          "kanagawa-wave",
+          "kanagawa-dragon",
+          "kanagawa-paper",
+          "rose-pine",
+          "no-clown-fiesta",
+          "adwaita",
+          "github-colors",
+          "tokyonight-moon",
+          "tokyonight-storm",
+          "tokyonight-night",
+          "catppuccin-latte",
+          "catppuccin-frappe",
+          "catppuccin-macchiato",
+          "catppuccin-mocha",
+          "material",
+          "vscode",
         },
-        plugins = {
-          "gitsigns",
-          "nvim-cmp",
-          "nvim-web-devicons",
-          "telescope",
-          "trouble",
-        },
-        disable = {
-          colored_cursor = true,
-          background = false,
-        },
+        livePreview = true,
       })
 
-      vim.cmd.colorscheme("material")
+      vim.cmd.colorscheme = "gruvbox-material"
     end,
   },
+  "rebelot/kanagawa.nvim",
+  "sho-87/kanagawa-paper.nvim",
+  "sainnhe/gruvbox-material",
+  "rose-pine/neovim",
+  "aktersnurra/no-clown-fiesta.nvim",
+  "Mofiqul/adwaita.nvim",
+  "lourenci/github-colors",
+  "folke/tokyonight.nvim",
+  "catppuccin/nvim",
+  "marko-cerovac/material.nvim",
+  "Mofiqul/vscode.nvim",
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
