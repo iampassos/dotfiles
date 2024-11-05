@@ -12,7 +12,8 @@ return {
           "rose-pine",
           "no-clown-fiesta",
           "adwaita",
-          "github-colors",
+          "github_dark",
+          "github_dark_default",
           "tokyonight-moon",
           "tokyonight-storm",
           "tokyonight-night",
@@ -25,8 +26,6 @@ return {
         },
         livePreview = true,
       })
-
-      vim.cmd.colorscheme = "gruvbox-material"
     end,
   },
   "rebelot/kanagawa.nvim",
@@ -35,7 +34,7 @@ return {
   "rose-pine/neovim",
   "aktersnurra/no-clown-fiesta.nvim",
   "Mofiqul/adwaita.nvim",
-  "lourenci/github-colors",
+  "projekt0n/github-nvim-theme",
   "folke/tokyonight.nvim",
   "catppuccin/nvim",
   "marko-cerovac/material.nvim",
