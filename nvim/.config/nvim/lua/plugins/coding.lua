@@ -38,7 +38,7 @@ return {
 
       lspconfig.clangd.setup({
         capabilities = capabilities,
-        filetypes = { "cpp", "c" },
+        filetypes = { "cpp", "c", "arduino" },
       })
 
       lspconfig.pylsp.setup({
