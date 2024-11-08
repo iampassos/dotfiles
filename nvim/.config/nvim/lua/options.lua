@@ -14,6 +14,7 @@ vim.opt.shiftwidth = 2
 vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.colorcolumn = "80"
 
 -- Status Line
 vim.o.laststatus = 3
