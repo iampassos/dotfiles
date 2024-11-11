@@ -23,6 +23,8 @@ return {
           "catppuccin-mocha",
           "material",
           "vscode",
+          "yugen",
+          "darkvoid",
         },
         livePreview = true,
       })
@@ -39,6 +41,8 @@ return {
   "catppuccin/nvim",
   "marko-cerovac/material.nvim",
   "Mofiqul/vscode.nvim",
+  "bettervim/yugen.nvim",
+  "Aliqyan-21/darkvoid.nvim",
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
