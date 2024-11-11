@@ -13,8 +13,6 @@ return {
       "saadparwaiz1/cmp_luasnip",
     },
     config = function()
-      vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
       local cmp = require("cmp")
 
       cmp.setup({
@@ -41,8 +39,18 @@ return {
             vim.snippet.expand(args.body)
           end,
         },
+        completion = {
+          completeopt = "menu,menuone,noselect",
+        },
         formatting = {
-          format = require("lspkind").cmp_format({}),
+          format = require("lspkind").cmp_format({
+            before = function(_, vim_item)
+              vim_item.menu = ""
+              vim_item.abbr = string.sub(vim_item.abbr, 1, 30)
+              return vim_item
+            end,
+            ellipsis_char = "...",
+          }),
         },
       })
     end,
