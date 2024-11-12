@@ -24,6 +24,8 @@ return {
           "yugen",
           "gruvbuddy",
           "darkvoid",
+          "jellybeans",
+          "vesper",
         },
         livePreview = true,
       })
@@ -41,6 +43,8 @@ return {
   "bettervim/yugen.nvim",
   "tjdevries/colorbuddy.nvim",
   "darkvoid-theme/darkvoid.nvim",
+  "nanotech/jellybeans.vim",
+  "datsfilipe/vesper.nvim",
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
