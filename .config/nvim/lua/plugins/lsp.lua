@@ -55,7 +55,6 @@ return {
         lsp = "cssls",
       },
       ["stylua"] = false,
-      ["arduino-language-server"] = false,
     }
 
     local servers_to_install = {}
