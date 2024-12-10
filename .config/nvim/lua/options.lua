@@ -1,24 +1,23 @@
--- Defaults
-vim.language = "en_US"
 vim.g.mapleader = " "
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
 
--- Tabs
-vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.smartindent = true
 
--- Cursor & Lines
+vim.opt.inccommand = "split"
+vim.opt.smartcase = true
+
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+
 vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.colorcolumn = "80"
 
--- Status Line
 vim.o.laststatus = 3
 vim.o.statusline = "%f %m %= %l:%L %y"
 
--- Clipboard
 vim.opt.clipboard = "unnamedplus"
