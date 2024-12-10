@@ -28,7 +28,7 @@ return {
       },
       clangd = {
         setup = {
-          filetypes = { "cpp", "c", "arduino" },
+          filetypes = { "cpp", "c" },
           cmd = { "clangd", "--function-arg-placeholders=0" },
         },
       },
