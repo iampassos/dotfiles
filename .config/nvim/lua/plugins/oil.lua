@@ -17,9 +17,5 @@ return {
 
     vim.keymap.set("n", "<space><TAB>", oil.toggle_float)
     vim.keymap.set("n", "<space>p", oil.open_preview)
-
-    if vim.fn.argc() == 0 then
-      vim.cmd("Oil")
-    end
   end,
 }
