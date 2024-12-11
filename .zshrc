@@ -106,8 +106,24 @@ export VISUAL="nvim"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Set up fzf key bindings and fuzzy completion
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 source <(fzf --zsh)
+
+tmux-project() {
+    local file
+    file=$(find ~/projects -mindepth 2 -maxdepth 2 -type d | fzf)
+
+    if [[ -n "$file" ]]; then
+        file_name=$(basename "$file" | tr . _)
+
+        [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+        tmux $change -t $file_name 2>/dev/null || (tmux new-session -d -s $file_name -c $file && tmux $change -t $file_name)
+    fi
+}
+
+bindkey -s ^f 'tmux-project\n'
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
