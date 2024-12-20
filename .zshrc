@@ -113,7 +113,7 @@ source <(fzf --zsh)
 
 tmux-project() {
     local file
-    file=$(find ~/projects -mindepth 2 -maxdepth 2 -type d | fzf)
+    file=$(find ~/projects -mindepth 2 -maxdepth 2 -type d | cat - <(echo ~/.dotfiles) | fzf)
 
     if [[ -n "$file" ]]; then
         file_name=$(basename "$file" | tr . _)
