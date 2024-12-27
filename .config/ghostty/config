@@ -1,0 +1,35 @@
+font-family = JetBrainsMonoNL Nerd Font
+font-size = 13
+
+window-padding-x = 0
+window-padding-y = 0
+
+gtk-titlebar = false
+gtk-single-instance = true
+
+copy-on-select = clipboard
+clipboard-paste-protection = false
+confirm-close-surface = false
+shell-integration = zsh
+
+palette = 0=#000000
+palette = 1=#cc6666
+palette = 2=#99cc99
+palette = 3=#de935f
+palette = 4=#81a2be
+palette = 5=#fef601
+palette = 6=#8e6fbd
+palette = 7=#f2e5bc
+palette = 8=#111111
+palette = 9=#cc6666
+palette = 10=#99cc99
+palette = 11=#de935f
+palette = 12=#81a2be
+palette = 13=#fef601
+palette = 14=#8e6fbd
+palette = 15=#f2e5bc
+background = #111111
+foreground = #E0E0E0
+cursor-color = #E0E0E0
+selection-background = #81a2be
+selection-foreground = #8abeb7
