@@ -1,9 +1,9 @@
 font-family = JetBrainsMonoNL Nerd Font
 font-size = 12
-adjust-cell-height = 10%
 
 window-padding-x = 0
 window-padding-y = 0
+window-decoration = false
 
 gtk-titlebar = false
 gtk-single-instance = true
