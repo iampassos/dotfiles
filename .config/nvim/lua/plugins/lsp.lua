@@ -32,28 +32,6 @@ return {
           cmd = { "clangd", "--function-arg-placeholders=0" },
         },
       },
-      pylsp = {
-        setup = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pycodestyle = {
-                  ignore = { "W391" },
-                },
-                black = {
-                  enabled = true,
-                },
-              },
-            },
-          },
-        },
-      },
-      ["html-lsp"] = {
-        lsp = "html",
-      },
-      ["css-lsp"] = {
-        lsp = "cssls",
-      },
       ["stylua"] = false,
     }
 
