@@ -7,6 +7,7 @@ window-decoration = false
 
 gtk-titlebar = false
 gtk-single-instance = true
+gtk-adwaita = false
 
 copy-on-select = clipboard
 clipboard-paste-protection = false
