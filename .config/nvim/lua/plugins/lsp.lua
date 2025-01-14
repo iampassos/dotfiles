@@ -33,7 +33,7 @@ return {
             cmd = { "clangd", "--function-arg-placeholders=0" },
           },
         },
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         ["stylua"] = false,
       }
 

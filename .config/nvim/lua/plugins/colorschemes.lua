@@ -7,14 +7,10 @@ return {
         themes = {
           "gruvbox-material",
           "github_dark_default",
+          "ayu",
           "vscode",
           "gruvbuddy",
-          "oxocarbon",
-          "sobrio",
-          "darkvoid",
           "rasmus",
-          "accent",
-          "meh",
         },
         livePreview = true,
       })
@@ -22,19 +18,16 @@ return {
   },
   "sainnhe/gruvbox-material",
   "projekt0n/github-nvim-theme",
-  "nyoom-engineering/oxocarbon.nvim",
-  "elvessousa/sobrio",
-  "darkvoid-theme/darkvoid.nvim",
+  "ayu-theme/ayu-vim",
   "Mofiqul/vscode.nvim",
   "tjdevries/colorbuddy.nvim",
   "kvrohit/rasmus.nvim",
-  "Alligator/accent.vim",
-  "davidosomething/vim-colors-meh",
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
     end,
   },
+  { "xiyaowong/transparent.nvim" },
   { "numToStr/Comment.nvim" },
 }
