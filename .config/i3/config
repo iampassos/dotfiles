@@ -214,3 +214,4 @@ bindsym Print exec --no-startup-id maim | tee "/home/$USER/Pictures/$(date).png"
 bindsym Ctrl+Shift+s exec --no-startup-id maim --select | tee "/home/$USER/Pictures/$(date).png" | xclip -selection clipboard -t image/png
 
 exec --no-startup-id blueman-applet
+exec --no-startup-id redshift-gtk
