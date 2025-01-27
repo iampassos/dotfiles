@@ -11,11 +11,13 @@ return {
           "vscode",
           "gruvbuddy",
           "rasmus",
+          "jb",
         },
         livePreview = true,
       })
     end,
   },
+  "nickkadutskyi/jb.nvim",
   "sainnhe/gruvbox-material",
   "projekt0n/github-nvim-theme",
   "ayu-theme/ayu-vim",
