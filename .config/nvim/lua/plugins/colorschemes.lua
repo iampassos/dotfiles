@@ -12,6 +12,7 @@ return {
           "gruvbuddy",
           "rasmus",
           "jb",
+          "carbide",
         },
         livePreview = true,
       })
@@ -24,6 +25,7 @@ return {
   "Mofiqul/vscode.nvim",
   "tjdevries/colorbuddy.nvim",
   "kvrohit/rasmus.nvim",
+  "ferdinandrau/carbide.nvim",
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
