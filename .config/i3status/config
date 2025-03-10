@@ -35,7 +35,9 @@ wireless _first_ {
 
 battery all {
         format = "%status %percentage"
+        format_percentage = "%.00f%s"
         format_down = ""
+        low_threshold = 25
 }
 
 memory {

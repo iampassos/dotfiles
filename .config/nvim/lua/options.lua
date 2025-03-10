@@ -15,9 +15,8 @@ vim.opt.shiftwidth = 4
 vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.colorcolumn = "80"
 
 vim.o.laststatus = 3
-vim.o.statusline = "%f %m %= %l:%L %y"
+vim.o.statusline = "%f %m %{FugitiveStatusline()} %= %l:%L %y"
 
 vim.opt.clipboard = "unnamedplus"
