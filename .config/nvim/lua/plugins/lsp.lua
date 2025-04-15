@@ -6,6 +6,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      "saghen/blink.cmp",
     },
     config = function()
       require("mason").setup()
@@ -34,7 +35,8 @@ return {
           },
         },
         rust_analyzer = {},
-        ["stylua"] = false,
+        pylsp = {},
+        stylua = false,
       }
 
       local servers_to_install = {}
@@ -47,7 +49,7 @@ return {
         ensure_installed = servers_to_install,
       })
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       for server, config in pairs(servers) do
         if config then
