@@ -1,8 +1,20 @@
 return {
   {
     "zaldih/themery.nvim",
-    lazy = false,
     config = function()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "*",
+        callback = function(args)
+          vim.schedule(function()
+            if args.match == "sonokai" then
+              vim.o.termguicolors = false
+            else
+              vim.o.termguicolors = true
+            end
+          end)
+        end,
+      })
+
       require("themery").setup({
         themes = {
           "gruvbox-material",
@@ -13,6 +25,7 @@ return {
           "rasmus",
           "jb",
           "carbide",
+          "sonokai",
         },
         livePreview = true,
       })
@@ -26,6 +39,7 @@ return {
   "tjdevries/colorbuddy.nvim",
   "kvrohit/rasmus.nvim",
   "ferdinandrau/carbide.nvim",
+  "sainnhe/sonokai",
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
