@@ -10,9 +10,18 @@ return {
         typescript = { "prettier" },
         json = { "prettier" },
         rust = { "rustfmt" },
+        c = { "clang_format" },
+        cpp = { "clang_format" },
       },
       default_format_opts = {
         lsp_format = "fallback",
+      },
+      formatters = {
+        clang_format = {
+          prepend_args = {
+            "--style={BasedOnStyle: LLVM, IndentWidth: 4, TabWidth: 4, UseTab: Never}",
+          },
+        },
       },
     })
 
