@@ -1,13 +1,13 @@
 font-family = JetBrainsMonoNL Nerd Font
 font-size = 12
 
-window-padding-x = 0
-window-padding-y = 0
-window-decoration = false
-
-gtk-titlebar = false
 gtk-single-instance = true
 gtk-adwaita = false
+window-decoration = false
+window-padding-x = 0
+window-padding-y = 0
+
+gtk-custom-css = style.css
 
 copy-on-select = clipboard
 clipboard-paste-protection = false
