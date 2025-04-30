@@ -35,6 +35,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec --no-startup-id redshift-gtk
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -208,10 +210,7 @@ bar {
 }
 
 exec --no-startup-id feh --bg-scale ~/.wallpaper.png
-exec --no-startup-id bash -c 'if [[ $(hostname) == *"pc"* ]]; then xrandr --output DP-4 --mode 1920x1080 --rate 144 --dpi 96; else xrandr --output eDP-1 --mode 1920x1080 --rate 60 --dpi 144; fi'
+exec --no-startup-id bash -c 'hostnamectl hostname | grep -q pc && xrandr --output DP-4 --mode 1920x1080 --rate 144 --dpi 96 || xrandr --output eDP-1 --mode 1920x1080 --rate 60 --dpi 144'
 
 bindsym Print exec --no-startup-id maim | tee "/home/$USER/Pictures/$(date).png"
 bindsym Ctrl+Shift+s exec --no-startup-id maim --select | tee "/home/$USER/Pictures/$(date).png" | xclip -selection clipboard -t image/png
-
-exec --no-startup-id blueman-applet
-exec --no-startup-id redshift-gtk
