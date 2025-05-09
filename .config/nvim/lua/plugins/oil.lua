@@ -15,7 +15,7 @@ return {
       },
     })
 
-    vim.keymap.set("n", "<space><TAB>", oil.toggle_float)
+    vim.keymap.set("n", "<space><TAB>", "<CMD>Oil<CR>")
     vim.keymap.set("n", "<space>p", oil.open_preview)
   end,
 }

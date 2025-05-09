@@ -16,33 +16,14 @@ return {
       default_format_opts = {
         lsp_format = "fallback",
       },
-      formatters = {
-        clang_format = {
-          prepend_args = {
-            "--style={BasedOnStyle: LLVM, IndentWidth: 4, TabWidth: 4, UseTab: Never}",
-          },
-        },
+      format_on_save = {
+        lsp_fallback = true,
+        timeout_ms = 500,
       },
     })
 
-    vim.keymap.set("n", "<leader>f", function()
+    vim.keymap.set({ "n", "v" }, "<leader>f", function()
       conform.format()
     end, {})
-
-    -- This is for typescript
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "*",
-      callback = function(args)
-        if vim.fn.expand("%:e") == "ts" then
-          vim.cmd("TSToolsOrganizeImports sync")
-          vim.cmd("TSToolsAddMissingImports sync")
-        end
-
-        conform.format({
-          buf = args.buf,
-          async = false,
-        })
-      end,
-    })
   end,
 }
