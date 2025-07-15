@@ -13,7 +13,7 @@ vim.diagnostic.config({
   virtual_lines = false,
 })
 
-vim.keymap.set("", "<leader>l", function()
+vim.keymap.set("n", "<leader>l", function()
   local vt = vim.diagnostic.config().virtual_text == true
   vim.diagnostic.config({
     virtual_text = not vt,

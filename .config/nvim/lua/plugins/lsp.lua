@@ -8,22 +8,19 @@ return {
     config = function()
       require("mason").setup()
 
+      local lsp_list = { "lua_ls", "rust_analyzer", "clangd", "pylsp" }
+
       require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "rust_analyzer",
-          "clangd",
-          "pylsp",
-        },
+        ensure_installed = lsp_list,
       })
 
       vim.lsp.config("*", {})
 
-      vim.lsp.enable({
-        "lua_ls",
-        "rust_analyzer",
-        "clangd",
-        "pylsp",
+      vim.lsp.config("clangd", {
+        setup = {
+          filetypes = { "cpp", "c" },
+          cmd = { "clangd", "--function-arg-placeholders=0" },
+        },
       })
 
       vim.lsp.config("lua_ls", {
@@ -41,6 +38,19 @@ return {
           },
         },
       })
+
+      vim.lsp.config("rust_analyzer", {
+        settings = {
+          ["rust-analyzer"] = {
+            check = {
+              command = "clippy",
+              extraArgs = { "--", "-W", "clippy::pedantic" },
+            },
+          },
+        },
+      })
+
+      vim.lsp.enable(lsp_list)
     end,
   },
 }

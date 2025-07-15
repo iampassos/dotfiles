@@ -1,8 +1,9 @@
 vim.g.mapleader = " "
 vim.g.colorscheme = "default"
 
-vim.opt.swapfile = false
 vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.opt.swapfile = false
 vim.opt.smartindent = true
 vim.opt.inccommand = "split"
 vim.opt.smartcase = true
