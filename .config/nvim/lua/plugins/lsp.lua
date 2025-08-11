@@ -8,7 +8,7 @@ return {
     config = function()
       require("mason").setup()
 
-      local lsp_list = { "lua_ls", "rust_analyzer", "clangd", "pylsp" }
+      local lsp_list = { "lua_ls", "rust_analyzer", "clangd", "pylsp", "jdtls" }
 
       require("mason-lspconfig").setup({
         ensure_installed = lsp_list,

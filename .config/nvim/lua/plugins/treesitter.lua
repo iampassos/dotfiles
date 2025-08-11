@@ -11,6 +11,7 @@ return {
         "typescript",
         "javascript",
         "python",
+        "java",
       },
       auto_install = true,
       highlight = { enable = true },
