@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.g.colorscheme = "default"
 
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
