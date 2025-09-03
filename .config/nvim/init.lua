@@ -296,19 +296,8 @@ vim.pack.add({
 -- COLORSCHEME
 --
 
-vim.pack.add({ { src = "https://github.com/slugbyte/lackluster.nvim" } })
-
-require("lackluster").setup({
-  disable_plugin = { git_signs = true },
-  tweak_highlight = {
-    ["@comment"] = {
-      overwrite = true,
-      link = "@string",
-    },
-  },
-})
-
-vim.cmd.colorscheme("lackluster-hack")
+vim.pack.add({ { src = "https://github.com/sainnhe/gruvbox-material" } })
+vim.cmd.colorscheme("gruvbox-material")
 
 --
 -- OTHER
