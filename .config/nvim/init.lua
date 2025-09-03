@@ -52,6 +52,10 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   command = "silent! loadview",
 })
 
+--
+-- DIAGNOSTICS
+--
+
 vim.diagnostic.config({
   signs = {
     text = { [vim.diagnostic.severity.ERROR] = ">>", ... },
@@ -296,6 +300,12 @@ vim.pack.add({ { src = "https://github.com/slugbyte/lackluster.nvim" } })
 
 require("lackluster").setup({
   disable_plugin = { git_signs = true },
+  tweak_highlight = {
+    ["@comment"] = {
+      overwrite = true,
+      link = "@string",
+    },
+  },
 })
 
 vim.cmd.colorscheme("lackluster-hack")
