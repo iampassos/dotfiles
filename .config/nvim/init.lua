@@ -53,15 +53,21 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 })
 
 vim.diagnostic.config({
-  virtual_text = true,
+  signs = {
+    text = { [vim.diagnostic.severity.ERROR] = ">>", ... },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+    },
+  },
+  virtual_text = false,
   virtual_lines = false,
+  underline = false,
 })
 
 vim.keymap.set("n", "<leader>l", function()
-  local vt = vim.diagnostic.config().virtual_text == true
   vim.diagnostic.config({
-    virtual_text = not vt,
-    virtual_lines = vt,
+    virtual_text = not vim.diagnostic.config().virtual_text == true,
+    underline = not vim.diagnostic.config().underline == true,
   })
 end)
 
@@ -297,5 +303,7 @@ vim.cmd.colorscheme("lackluster-hack")
 --
 -- OTHER
 --
+
+vim.pack.add({ { src = "https://github.com/shortcuts/no-neck-pain.nvim" } })
 
 vim.o.statusline = "%f %m %{FugitiveStatusline()} %= %l:%L %y"
