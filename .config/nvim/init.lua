@@ -129,6 +129,15 @@ vim.lsp.config("rust_analyzer", {
   },
 })
 
+vim.lsp.config("jdtls", {
+  cmd = {
+    vim.fn.expand("$HOME/.local/share/nvim/mason/bin/jdtls"),
+    ("--jvm-arg=-javaagent:%s"):format(
+      vim.fn.expand("/usr/share/java/lombok/lombok.jar")
+    ),
+  },
+})
+
 vim.lsp.enable(lsp_list)
 
 --
@@ -231,6 +240,7 @@ vim.pack.add({
 vim.keymap.set("n", "<leader>ff", "<cmd>Files<CR>")
 vim.keymap.set("n", "<leader>fg", "<cmd>GFiles<CR>")
 vim.keymap.set("n", "<leader>fb", "<cmd>Buffers<CR>")
+vim.keymap.set("n", "<leader>fr", "<cmd>Rg<CR>")
 
 --
 -- GIT
