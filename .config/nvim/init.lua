@@ -38,6 +38,11 @@ vim.keymap.set("n", "<TAB>", "<cmd>bnext<CR>")
 vim.keymap.set("n", "<S-TAB>", "<cmd>bprev<CR>")
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>")
 
+vim.keymap.set("n", "<C-Up>", ":resize -5<CR>")
+vim.keymap.set("n", "<C-Down>", ":resize +5<CR>")
+vim.keymap.set("n", "<C-Left>", ":vertical resize -5<CR>")
+vim.keymap.set("n", "<C-Right>", ":vertical resize +5<CR>")
+
 --
 -- MISC
 --
@@ -253,6 +258,9 @@ vim.pack.add({
 
 require("gitsigns").setup()
 
+vim.keymap.set("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>")
+vim.keymap.set("n", "<leader>gt", "<cmd>Gitsigns toggle_current_line_blame<CR>")
+
 --
 -- OIL
 --
@@ -312,7 +320,5 @@ vim.cmd.colorscheme("gruvbox-material")
 --
 -- OTHER
 --
-
-vim.pack.add({ { src = "https://github.com/shortcuts/no-neck-pain.nvim" } })
 
 vim.o.statusline = "%f %m %{FugitiveStatusline()} %= %l:%L %y"
