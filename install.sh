@@ -5,7 +5,7 @@ sudo dnf upgrade --refresh -y
 
 sudo dnf install -y \
     git vim stow zsh tmux fzf maim xclip xsel fd-find ripgrep xsetroot bat \
-    polybar zip unzip jetbrains-mono-fonts-all @development-tools
+    polybar zip unzip redshift redshift-gtk @development-tools
 
 [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -29,7 +29,12 @@ sudo dnf install ghostty -y
 [ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.default"
 [ ! -d "$HOME/.dotfiles" ] && git clone https://github.com/iampassos/dotfiles "$HOME/.dotfiles"
 [ -d "$HOME/.dotfiles" ] && cd "$HOME/.dotfiles" && stow . && cd "$HOME"
+chmod +x ~/.config/polybar/scripts/*
 
-chmod +x ~/.config/polybar/scripts/powermenu.sh
+cd "$HOME/Downloads"
+git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git
+cd nerd-fonts
+git sparse-checkout add patched-fonts/JetBrainsMono
+sudo fc-cache -fv
 
 [ "$SHELL" != "$(which zsh)" ] && chsh -s $(which zsh)
