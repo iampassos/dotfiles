@@ -5,7 +5,7 @@ sudo dnf upgrade --refresh -y
 
 sudo dnf install -y \
     git vim stow zsh tmux fzf maim xclip xsel fd-find ripgrep xsetroot bat \
-    zip unzip jetbrains-mono-fonts-all @development-tools
+    polybar zip unzip jetbrains-mono-fonts-all @development-tools
 
 [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
