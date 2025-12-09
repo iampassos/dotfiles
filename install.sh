@@ -30,4 +30,6 @@ sudo dnf install ghostty -y
 [ ! -d "$HOME/.dotfiles" ] && git clone https://github.com/iampassos/dotfiles "$HOME/.dotfiles"
 [ -d "$HOME/.dotfiles" ] && cd "$HOME/.dotfiles" && stow . && cd "$HOME"
 
+chmod +x ~/.config/polybar/scripts/powermenu.sh
+
 [ "$SHELL" != "$(which zsh)" ] && chsh -s $(which zsh)
