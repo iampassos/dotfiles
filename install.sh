@@ -3,9 +3,8 @@ set -euo pipefail
 
 sudo dnf upgrade --refresh -y
 
-sudo dnf install -y \
-    git vim stow zsh tmux fzf maim xclip xsel fd-find ripgrep xsetroot bat \
-    polybar zip unzip redshift redshift-gtk @development-tools
+sudo dnf install -y git vim stow zsh tmux fzf fd-find ripgrep bat zip unzip vlc @development-tools
+sudo dnf install -y wl-clipboard waybar mako gammastep grimshot xdg-desktop-portal-wlr
 
 [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -25,11 +24,10 @@ bob use nightly
 sudo dnf copr enable scottames/ghostty -y
 sudo dnf install ghostty -y
 
-[ -d "$HOME/.config/i3" ] && rm -rf "$HOME/.config/i3"
+[ -d "$HOME/.config/sway" ] && rm -rf "$HOME/.config/sway"
 [ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.default"
 [ ! -d "$HOME/.dotfiles" ] && git clone https://github.com/iampassos/dotfiles "$HOME/.dotfiles"
 [ -d "$HOME/.dotfiles" ] && cd "$HOME/.dotfiles" && stow . && cd "$HOME"
-chmod +x ~/.config/polybar/scripts/*
 
 cd "$HOME/Downloads"
 git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git
