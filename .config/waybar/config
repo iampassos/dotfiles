@@ -41,52 +41,52 @@
     "interval": 1
   },
   "network": {
-    "format-wifi": "󰤢  {essid}",
-    "format-ethernet": "󰈀  Ethernet",
-    "format-disconnected": "󰤠",
-    "interval": 5,
-    "tooltip-format": "{essid} ({signalStrength}%)",
-    "tooltip-format-ethernet": "{ifname} {ipaddr}",
-    "on-click": "nm-connection-editor"
+      "format-wifi": "󰤢  {essid}",
+      "format-ethernet": "󰈀  Ethernet",
+      "format-disconnected": "󰤠",
+      "interval": 5,
+      "tooltip-format": "{essid} ({signalStrength}%)",
+      "tooltip-format-ethernet": "{ifname} {ipaddr}",
+      "on-click": "nm-connection-editor"
   },
   "cpu": {
-    "interval": 1,
-    "format": "  {usage:>2}%",
-    "on-click": "ghostty -e htop"
+      "interval": 1,
+      "format": "  {usage:>2}%",
+      "on-click": "ghostty -e htop"
   },
   "memory": {
-    "interval": 30,
-    "format": "  {percentage:>2}%",
-    "tooltip-format": "{used} GiB/{total} GiB"
+      "interval": 30,
+      "format": "  {percentage:>2}%",
+      "tooltip-format": "{used} GiB/{total} GiB"
   },
   "pulseaudio": {
-    "format": "{icon}  {volume}%",
-    "format-muted": "",
-    "format-icons": {
-      "default": [
-        "",
-        "",
-        " "
-      ]
-    },
-    "on-click": "pavucontrol"
+      "format": "{icon}  {volume}%",
+      "format-muted": "",
+      "format-icons": {
+          "default": [
+              "",
+              "",
+              " "
+          ]
+      },
+      "on-click": "pavucontrol"
   },
   "battery": {
-    "interval": 2,
-    "states": {
-      "warning": 20
-    },
-    "format": "{icon}  {capacity}%",
-    "format-full": "{icon}  {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-alt": "{icon} {time}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
+      "interval": 2,
+      "states": {
+          "warning": 20
+      },
+      "format": "{icon}  {capacity}%",
+      "format-full": "{icon}  {capacity}%",
+      "format-charging": " {capacity}%",
+      "format-plugged": " {capacity}%",
+      "format-alt": "{icon} {time}",
+      "format-icons": [
+          "",
+          "",
+          "",
+          "",
+          ""
+      ]
   }
 }

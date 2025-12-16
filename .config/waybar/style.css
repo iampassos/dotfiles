@@ -8,7 +8,7 @@
 
 /* --- Waybar Container --- */
 #waybar {
-    background: #1a1b26;
+    background: #333333;
     color: #c6d0f5;
     margin: 0;
     font-weight: 500;
@@ -25,16 +25,14 @@
 #cpu,
 #memory,
 #battery {
-    background-color: #1a1b26;
     padding: 0.3rem 0.7rem;
-    margin: 5px 0;
+    margin: 0px 0;
     min-width: 0;
     border: none;
     box-shadow: none;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-#workspaces:hover,
 #bluetooth:hover,
 #pulseaudio:hover,
 #backlight:hover,
@@ -43,7 +41,7 @@
 #cpu:hover,
 #memory:hover,
 #battery:hover {
-    background-color: rgb(41, 42, 53);
+    background-color: #222222;
 }
 
 /* --- Grouped Radius Handling --- */
@@ -53,42 +51,46 @@
 }
 
 #battery {
-    margin-right: 7px;
+    margin-right: 0px;
     border-radius: 0 6px 6px 0;
 }
 
-/* --- Workspaces --- */
+/* --- Workspaces container --- */
 #workspaces {
     padding: 2px;
-    margin-left: 7px;
+    margin-left: 0px;
     margin-right: 5px;
     border-radius: 6px;
 }
 
+/* --- Unfocused workspace buttons --- */
 #workspaces button {
-    color: #babbf1;
+    color: #888888;                
+    background-color: #222222;    
     padding: 0.3rem 0.6rem;
-    border-radius: 5px;
+    border-radius: 2px;
     border: none;
     outline: none;
     transition: all 0.2s ease-in-out;
 }
 
+/* --- Hover effect (darker shade for unfocused hover) --- */
 #workspaces button:hover {
-    background: rgb(41, 42, 53);
-    color: #c6d0f5;
+    color: #000000;                   
 }
 
+/* --- Focused workspace button --- */
 #workspaces button.focused {
-    color: #2e9ef4;
-    background-color: rgba(46, 158, 244, 0.12);
-    box-shadow: inset 0 0 0 1px rgba(46, 158, 244, 0.35);
+    color: #ffffff;             
+    background-color: #285577; 
+    box-shadow: inset 0 0 0 1px #4c7899; 
 }
 
+/* --- Urgent workspace button --- */
 #workspaces button.urgent {
-    color: #e78284;
-    background-color: rgba(231, 130, 132, 0.1);
-    box-shadow: inset 0 0 0 1px rgba(231, 130, 132, 0.2);
+    color: #ffffff;            
+    background-color: #900000;
+    box-shadow: inset 0 0 0 1px #2f343a;
 }
 
 /* --- Colors --- */
@@ -98,7 +100,7 @@
 #pulseaudio,
 #backlight,
 #network {
-    color: #c6d0f5;
+    color: #f0f0f0;
 }
 
 #network.disconnected {
@@ -129,8 +131,8 @@
 
 /* --- Tooltip --- */
 tooltip {
-    background-color: #1a1b26;
-    color: #dddddd;
+    background-color: rgba(41, 42, 53, 0.9);
+    color: #f0f0f0;
     padding: 5px 12px;
     margin: 9px 0;
     border-radius: 6px;
