@@ -1,0 +1,92 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-bottom": 0,
+  "spacing": 0,
+  "modules-left": [
+    "sway/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "bluetooth",
+    "network",
+    "pulseaudio",
+    "battery"
+  ],
+  "sway/workspaces": {
+    "disable-scroll": false,
+    "all-outputs": true,
+    "format": "{name}"
+  },
+  "bluetooth": {
+    "format": "󰂲",
+    "format-on": "{icon}",
+    "format-off": "{icon}",
+    "format-connected": "{icon}",
+    "format-icons": {
+      "on": "󰂯",
+      "off": "󰂲",
+      "connected": "󰂱"
+    },
+    "on-click": "blueman-manager",
+    "tooltip-format-connected": "{device_enumerate}"
+  },
+  "clock": {
+    "tooltip": false,
+    "format": "{:%H:%M:%S  -  %d/%m/%Y}",
+    "interval": 1
+  },
+  "network": {
+    "format-wifi": "󰤢  {essid}",
+    "format-ethernet": "󰈀  Ethernet",
+    "format-disconnected": "󰤠",
+    "interval": 5,
+    "tooltip-format": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname} {ipaddr}",
+    "on-click": "nm-connection-editor"
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "  {usage:>2}%",
+    "on-click": "ghostty -e htop"
+  },
+  "memory": {
+    "interval": 30,
+    "format": "  {percentage:>2}%",
+    "tooltip-format": "{used} GiB/{total} GiB"
+  },
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        " "
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "battery": {
+    "interval": 2,
+    "states": {
+      "warning": 20
+    },
+    "format": "{icon}  {capacity}%",
+    "format-full": "{icon}  {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  }
+}

@@ -3,7 +3,7 @@ set -euo pipefail
 
 sudo dnf upgrade --refresh -y
 
-sudo dnf install -y git vim stow zsh tmux fzf fd-find ripgrep bat zip unzip vlc @development-tools
+sudo dnf install -y git vim stow zsh tmux fzf fd-find ripgrep bat zip unzip vlc htop @development-tools
 sudo dnf install -y wl-clipboard waybar mako gammastep grimshot xdg-desktop-portal-wlr
 
 [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -33,6 +33,7 @@ cd "$HOME/Downloads"
 git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git
 cd nerd-fonts
 git sparse-checkout add patched-fonts/JetBrainsMono
+git sparse-checkout add patched-fonts/Noto
 ./install.sh
 sudo fc-cache -fv
 
