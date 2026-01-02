@@ -3,7 +3,7 @@ set -euo pipefail
 
 sudo dnf upgrade --refresh -y
 
-sudo dnf install -y git vim stow zsh tmux fzf fd-find ripgrep bat zip unzip vlc htop @development-tools
+sudo dnf install -y git vim stow zsh tmux fzf fd-find ripgrep bat zip unzip vlc htop foot @development-tools
 sudo dnf install -y wl-clipboard waybar mako gammastep grimshot xdg-desktop-portal-wlr
 
 [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -20,9 +20,6 @@ command -v rustc >/dev/null 2>&1 || curl --proto '=https' --tlsv1.2 -sSf https:/
 export PATH="$HOME/.cargo/bin:$PATH"
 command -v bob >/dev/null 2>&1 || cargo install bob-nvim
 bob use nightly
-
-sudo dnf copr enable scottames/ghostty -y
-sudo dnf install ghostty -y
 
 [ -d "$HOME/.config/sway" ] && rm -rf "$HOME/.config/sway"
 [ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.default"

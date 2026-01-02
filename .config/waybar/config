@@ -33,7 +33,8 @@
       "connected": "󰂱"
     },
     "on-click": "blueman-manager",
-    "tooltip-format-connected": "{device_enumerate}"
+    "tooltip-format-connected": "{device_alias}",
+    "tooltip-format-connected-battery": "{device_alias} {device_battery_percentage}%"
   },
   "clock": {
     "tooltip": false,

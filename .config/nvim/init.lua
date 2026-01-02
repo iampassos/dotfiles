@@ -7,7 +7,6 @@ vim.g.mapleader = " "
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.swapfile = false
-vim.opt.smartindent = true
 vim.opt.inccommand = "split"
 vim.opt.smartcase = true
 vim.opt.expandtab = true
@@ -19,8 +18,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.undofile = true
-
-vim.o.laststatus = 3
+vim.opt.laststatus = 3
 
 --
 -- KEYMAPS
@@ -92,7 +90,7 @@ vim.pack.add({
 
 require("mason").setup()
 
-local lsp_list = { "lua_ls", "rust_analyzer", "clangd", "pylsp", "jdtls" }
+local lsp_list = { "lua_ls", "rust_analyzer", "clangd", "pylsp", "stylua" }
 
 require("mason-lspconfig").setup({
   ensure_installed = lsp_list,
@@ -131,15 +129,6 @@ vim.lsp.config("rust_analyzer", {
         extraArgs = { "--", "-W", "clippy" },
       },
     },
-  },
-})
-
-vim.lsp.config("jdtls", {
-  cmd = {
-    vim.fn.expand("$HOME/.local/share/nvim/mason/bin/jdtls"),
-    ("--jvm-arg=-javaagent:%s"):format(
-      vim.fn.expand("/usr/share/java/lombok/lombok.jar")
-    ),
   },
 })
 
@@ -321,4 +310,4 @@ vim.cmd.colorscheme("gruvbox-material")
 -- OTHER
 --
 
-vim.o.statusline = "%f %m %{FugitiveStatusline()} %= %l:%L %y"
+vim.opt.statusline = "%f %m %{FugitiveStatusline()} %= %l:%L %y"
