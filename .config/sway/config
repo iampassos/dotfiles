@@ -68,7 +68,7 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
 input type:keyboard {
     xkb_layout br
-    xkb_variant abnt2
+    xkb_variant thinkpad
 }
 
 input type:touchpad {

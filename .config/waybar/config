@@ -48,12 +48,12 @@
       "interval": 5,
       "tooltip-format": "{essid} ({signalStrength}%)",
       "tooltip-format-ethernet": "{ifname} {ipaddr}",
-      "on-click": "nm-connection-editor"
+      "on-click": "$HOME/.config/waybar/scripts/wifi.sh"
   },
   "cpu": {
       "interval": 1,
       "format": "  {usage:>2}%",
-      "on-click": "ghostty -e htop"
+      "on-click": "foot -e htop"
   },
   "memory": {
       "interval": 30,

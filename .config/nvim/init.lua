@@ -90,7 +90,8 @@ vim.pack.add({
 
 require("mason").setup()
 
-local lsp_list = { "lua_ls", "rust_analyzer", "clangd", "pylsp", "stylua" }
+local lsp_list =
+  { "lua_ls", "rust_analyzer", "clangd", "pylsp", "stylua", "gopls" }
 
 require("mason-lspconfig").setup({
   ensure_installed = lsp_list,
@@ -303,8 +304,8 @@ vim.pack.add({
 -- COLORSCHEME
 --
 
-vim.pack.add({ { src = "https://github.com/sainnhe/gruvbox-material" } })
-vim.cmd.colorscheme("gruvbox-material")
+vim.pack.add({ { src = "https://github.com/kvrohit/rasmus.nvim" } })
+vim.cmd.colorscheme("rasmus")
 
 --
 -- OTHER

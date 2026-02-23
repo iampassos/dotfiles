@@ -8,7 +8,7 @@
 
 /* --- Waybar Container --- */
 #waybar {
-    background: #333333;
+    background: #363636;
     color: #c6d0f5;
     margin: 0;
     font-weight: 500;
@@ -74,16 +74,17 @@
     transition: all 0.2s ease-in-out;
 }
 
-/* --- Hover effect (darker shade for unfocused hover) --- */
-#workspaces button:hover {
-    color: #000000;                   
-}
 
 /* --- Focused workspace button --- */
 #workspaces button.focused {
     color: #ffffff;             
     background-color: #285577; 
     box-shadow: inset 0 0 0 1px #4c7899; 
+}
+
+/* --- Hover effect (darker shade for unfocused hover) --- */
+#workspaces button:hover {
+    color: #000000;                   
 }
 
 /* --- Urgent workspace button --- */
@@ -118,7 +119,7 @@
 }
 
 #battery {
-  color: #99d1db;;
+    color: #99d1db;
 }
 
 #battery.charging {

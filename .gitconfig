@@ -1,5 +1,5 @@
 [user]
-  name = iampassos
+  name  = iampassos
   email = 78429887+iampassos@users.noreply.github.com
 [core]
   editor = nvim

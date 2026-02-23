@@ -3,7 +3,7 @@ set -euo pipefail
 
 sudo dnf upgrade --refresh -y
 
-sudo dnf install -y git vim stow zsh tmux fzf fd-find ripgrep bat zip unzip vlc htop foot @development-tools
+sudo dnf install -y git vim stow zsh tmux fzf fd-find ripgrep bat zip unzip vlc htop foot go @development-tools
 sudo dnf install -y wl-clipboard waybar mako gammastep grimshot xdg-desktop-portal-wlr
 
 [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -13,18 +13,20 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 flatpak install -y flathub com.discordapp.Discord
 flatpak install -y flathub com.spotify.Client
 flatpak install -y flathub us.zoom.Zoom
+flatpak install -y flathub rest.insomnia.Insomnia
 
 curl -fsS https://dl.brave.com/install.sh | sh
 
 command -v rustc >/dev/null 2>&1 || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 export PATH="$HOME/.cargo/bin:$PATH"
 command -v bob >/dev/null 2>&1 || cargo install bob-nvim
-bob use nightly
 
 [ -d "$HOME/.config/sway" ] && rm -rf "$HOME/.config/sway"
 [ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.default"
 [ ! -d "$HOME/.dotfiles" ] && git clone https://github.com/iampassos/dotfiles "$HOME/.dotfiles"
 [ -d "$HOME/.dotfiles" ] && cd "$HOME/.dotfiles" && stow . && cd "$HOME"
+
+find "$HOME/.dotfiles" -type f -name "*.sh" -exec chmod +x {} \;
 
 cd "$HOME/Downloads"
 git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git
@@ -33,5 +35,7 @@ git sparse-checkout add patched-fonts/JetBrainsMono
 git sparse-checkout add patched-fonts/Noto
 ./install.sh
 sudo fc-cache -fv
+
+mkdir -p "$HOME/projects"/{work,college,personal}
 
 [ "$SHELL" != "$(which zsh)" ] && chsh -s $(which zsh)

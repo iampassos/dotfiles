@@ -137,4 +137,4 @@ if [ -f "$HOME/.zsh_aliases" ] ; then
     source "$HOME/.zsh_aliases"
 fi
 
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+export PATH=$PATH:$(go env GOPATH)/bin
