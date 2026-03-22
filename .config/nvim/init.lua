@@ -19,10 +19,13 @@ vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.undofile = true
 vim.opt.laststatus = 3
+vim.opt.autoread = true
 
 --
 -- KEYMAPS
 --
+
+vim.keymap.set("n", "<leader>ll", "<cmd>edit<CR>")
 
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
@@ -31,10 +34,6 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 vim.keymap.set("n", "<C-n>", "<cmd>vsplit<CR>")
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
-vim.keymap.set("n", "<TAB>", "<cmd>bnext<CR>")
-vim.keymap.set("n", "<S-TAB>", "<cmd>bprev<CR>")
-vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>")
 
 vim.keymap.set("n", "<C-Up>", ":resize -5<CR>")
 vim.keymap.set("n", "<C-Down>", ":resize +5<CR>")
@@ -71,7 +70,7 @@ vim.diagnostic.config({
   underline = false,
 })
 
-vim.keymap.set("n", "<leader>l", function()
+vim.keymap.set("n", "<leader>sd", function()
   vim.diagnostic.config({
     virtual_text = not vim.diagnostic.config().virtual_text == true,
     underline = not vim.diagnostic.config().underline == true,
@@ -134,6 +133,16 @@ vim.lsp.config("rust_analyzer", {
 })
 
 vim.lsp.enable(lsp_list)
+
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+vim.keymap.set("n", "gv", function()
+  vim.cmd("vsplit")
+  vim.lsp.buf.definition()
+end)
+vim.keymap.set("n", "gt", function()
+  vim.cmd("split")
+  vim.lsp.buf.definition()
+end)
 
 --
 -- TREESITTER
@@ -248,8 +257,10 @@ vim.pack.add({
 
 require("gitsigns").setup()
 
-vim.keymap.set("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>")
-vim.keymap.set("n", "<leader>gt", "<cmd>Gitsigns toggle_current_line_blame<CR>")
+vim.keymap.set("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>")
+vim.keymap.set("n", "<leader>hi", "<cmd>Gitsigns preview_hunk_inline<CR>")
+vim.keymap.set("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>")
+vim.keymap.set("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<CR>")
 
 --
 -- OIL
@@ -258,6 +269,7 @@ vim.keymap.set("n", "<leader>gt", "<cmd>Gitsigns toggle_current_line_blame<CR>")
 vim.pack.add({
   { src = "https://github.com/stevearc/oil.nvim" },
   { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+  { src = "https://github.com/refractalize/oil-git-status.nvim" },
 })
 
 local oil = require("oil")
@@ -271,10 +283,17 @@ oil.setup({
     ["<C-h>"] = false,
     ["<C-p>"] = false,
   },
+  win_options = {
+    signcolumn = "yes:2",
+  },
 })
 
 vim.keymap.set("n", "<space><TAB>", "<CMD>Oil<CR>")
 vim.keymap.set("n", "<space>p", oil.open_preview)
+
+require("oil-git-status").setup({
+  show_ignored = false,
+})
 
 --
 -- TMUX

@@ -6,6 +6,10 @@ sudo dnf upgrade --refresh -y
 sudo dnf install -y git vim stow zsh tmux fzf fd-find ripgrep bat zip unzip vlc htop foot go @development-tools
 sudo dnf install -y wl-clipboard waybar mako gammastep grimshot xdg-desktop-portal-wlr
 
+sudo dnf -y config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo dnf install -y psql
+
 [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 sudo dnf install -y flatpak 
