@@ -40,6 +40,15 @@ vim.keymap.set("n", "<C-Down>", ":resize +5<CR>")
 vim.keymap.set("n", "<C-Left>", ":vertical resize -5<CR>")
 vim.keymap.set("n", "<C-Right>", ":vertical resize +5<CR>")
 
+vim.keymap.set("v", "<leader>yy", function()
+  local start_line = vim.fn.line("'<")
+  local end_line = vim.fn.line("'>")
+  local file = vim.fn.expand("%:.")
+  local text = string.format("@%s:%d-%d", file, start_line, end_line)
+  vim.fn.setreg("+", text)
+  print("Copied: " .. text)
+end)
+
 --
 -- MISC
 --
@@ -149,24 +158,10 @@ end)
 --
 
 vim.pack.add({
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+  { src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 })
 
-require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "lua",
-    "rust",
-    "c",
-    "cpp",
-    "typescript",
-    "javascript",
-    "python",
-    "java",
-  },
-  auto_install = true,
-  highlight = { enable = true },
-  indent = { enable = true },
-})
+require("tree-sitter-manager").setup({})
 
 --
 -- COMPLETION
@@ -255,12 +250,19 @@ vim.pack.add({
   { src = "https://github.com/tpope/vim-fugitive" },
 })
 
-require("gitsigns").setup()
+local gitsigns = require("gitsigns")
+gitsigns.setup()
 
-vim.keymap.set("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>")
-vim.keymap.set("n", "<leader>hi", "<cmd>Gitsigns preview_hunk_inline<CR>")
-vim.keymap.set("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>")
-vim.keymap.set("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<CR>")
+vim.keymap.set("n", "<leader>hp", gitsigns.preview_hunk)
+vim.keymap.set("n", "<leader>hi", gitsigns.preview_hunk_inline)
+vim.keymap.set("n", "<leader>hr", gitsigns.reset_hunk)
+vim.keymap.set("n", "<leader>tb", gitsigns.toggle_current_line_blame)
+vim.keymap.set("n", "]c", gitsigns.next_hunk)
+vim.keymap.set("n", "[c", gitsigns.prev_hunk)
+
+vim.pack.add({
+  { src = "https://github.com/sindrets/diffview.nvim" },
+})
 
 --
 -- OIL
@@ -323,11 +325,53 @@ vim.pack.add({
 -- COLORSCHEME
 --
 
-vim.pack.add({ { src = "https://github.com/kvrohit/rasmus.nvim" } })
-vim.cmd.colorscheme("rasmus")
+vim.pack.add({ { src = "https://github.com/sainnhe/gruvbox-material" } })
+vim.g.gruvbox_material_foreground = "original"
+vim.g.gruvbox_material_background = "soft"
+vim.g.gruvbox_material_better_performance = 1
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("custom_highlights_gruvboxmaterial", {}),
+  pattern = "gruvbox-material",
+  callback = function()
+    local config = vim.fn["gruvbox_material#get_configuration"]()
+    local palette = vim.fn["gruvbox_material#get_palette"](
+      config.background,
+      config.foreground,
+      config.colors_override
+    )
+    local set_hl = vim.fn["gruvbox_material#highlight"]
+
+    set_hl("TSField", palette.none, palette.none)
+    set_hl("TSProperty", palette.none, palette.none)
+  end,
+})
+
+vim.cmd.colorscheme("gruvbox-material")
+
+--
+-- STATUS LINE
+--
+
+vim.pack.add({ { src = "https://github.com/nvim-lualine/lualine.nvim" } })
+require("lualine").setup({
+  options = {
+    icons_enabled = true,
+    section_separators = "",
+    component_separators = "",
+  },
+  sections = {
+    lualine_a = { "mode" },
+    lualine_b = { "branch", "diff", "diagnostics" },
+    lualine_c = { { "filename", path = 4 } },
+    lualine_x = { { "filetype", colored = false } },
+    lualine_y = { "progress" },
+    lualine_z = { "location" },
+  },
+})
 
 --
 -- OTHER
 --
 
-vim.opt.statusline = "%f %m %{FugitiveStatusline()} %= %l:%L %y"
+-- vim.opt.statusline = "%f %m %{FugitiveStatusline()} %= %l:%L %y"

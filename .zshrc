@@ -111,16 +111,22 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 source <(fzf --zsh)
 
+# tmux-project() {
+#     local file
+#     file=$(find ~/projects -mindepth 2 -maxdepth 2 -type d | cat - <(echo ~/.dotfiles) | fzf)
+#
+#     if [[ -n "$file" ]]; then
+#         file_name=$(basename "$file" | tr . _)
+#
+#         [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+#         tmux $change -t $file_name 2>/dev/null || (tmux new-session -d -s $file_name -c $file && tmux $change -t $file_name)
+#     fi
+# }
+#
+# bindkey -s ^f 'tmux-project\n'
+
 tmux-project() {
-    local file
-    file=$(find ~/projects -mindepth 2 -maxdepth 2 -type d | cat - <(echo ~/.dotfiles) | fzf)
-
-    if [[ -n "$file" ]]; then
-        file_name=$(basename "$file" | tr . _)
-
-        [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
-        tmux $change -t $file_name 2>/dev/null || (tmux new-session -d -s $file_name -c $file && tmux $change -t $file_name)
-    fi
+    (sesh connect $(find ~/projects -mindepth 2 -maxdepth 2 -type d | cat - <(echo ~/.dotfiles) | fzf)) >/dev/null 2>&1
 }
 
 bindkey -s ^f 'tmux-project\n'
@@ -133,8 +139,8 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -f "$HOME/.zsh_aliases" ] ; then
-    source "$HOME/.zsh_aliases"
+if [ -f "$HOME/.zsh_extra" ] ; then
+    source "$HOME/.zsh_extra"
 fi
 
 export PATH=$PATH:$(go env GOPATH)/bin

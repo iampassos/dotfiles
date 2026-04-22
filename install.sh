@@ -3,12 +3,15 @@ set -euo pipefail
 
 sudo dnf upgrade --refresh -y
 
-sudo dnf install -y git vim stow zsh tmux fzf fd-find ripgrep bat zip unzip vlc htop foot go @development-tools
+sudo dnf install -y git vim stow zsh tmux fzf fd-find ripgrep bat zip unzip vlc htop foot go zoxide @development-tools
 sudo dnf install -y wl-clipboard waybar mako gammastep grimshot xdg-desktop-portal-wlr
 
 sudo dnf -y config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
 sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo dnf install -y psql
+
+sudo dnf copr enable agriffis/neovim-nightly
+sudo dnf install -y neovim python3-neovim
 
 [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -23,7 +26,6 @@ curl -fsS https://dl.brave.com/install.sh | sh
 
 command -v rustc >/dev/null 2>&1 || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 export PATH="$HOME/.cargo/bin:$PATH"
-command -v bob >/dev/null 2>&1 || cargo install bob-nvim
 
 [ -d "$HOME/.config/sway" ] && rm -rf "$HOME/.config/sway"
 [ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.default"
@@ -39,6 +41,10 @@ git sparse-checkout add patched-fonts/JetBrainsMono
 git sparse-checkout add patched-fonts/Noto
 ./install.sh
 sudo fc-cache -fv
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+go install github.com/joshmedeski/sesh/v2@latest
 
 mkdir -p "$HOME/projects"/{work,college,personal}
 
