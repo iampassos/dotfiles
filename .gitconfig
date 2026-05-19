@@ -3,5 +3,15 @@
   email = 78429887+iampassos@users.noreply.github.com
 [core]
   editor = nvim
+  pager = delta
 [credential]
   helper = store
+
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  dark = true
+  line-numbers = true
+[merge]
+  conflictStyle = zdiff3

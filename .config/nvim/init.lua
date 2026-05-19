@@ -40,13 +40,24 @@ vim.keymap.set("n", "<C-Down>", ":resize +5<CR>")
 vim.keymap.set("n", "<C-Left>", ":vertical resize -5<CR>")
 vim.keymap.set("n", "<C-Right>", ":vertical resize +5<CR>")
 
-vim.keymap.set("v", "<leader>yy", function()
-  local start_line = vim.fn.line("'<")
-  local end_line = vim.fn.line("'>")
-  local file = vim.fn.expand("%:.")
-  local text = string.format("@%s:%d-%d", file, start_line, end_line)
-  vim.fn.setreg("+", text)
-  print("Copied: " .. text)
+vim.keymap.set("x", "<leader>yy", function()
+  vim.schedule(function()
+    local start = vim.api.nvim_buf_get_mark(0, "<")
+    local finish = vim.api.nvim_buf_get_mark(0, ">")
+
+    local start_line = start[1]
+    local end_line = finish[1]
+
+    if start_line > end_line then
+      start_line, end_line = end_line, start_line
+    end
+
+    local file = vim.fn.expand("%:.")
+    local text = string.format("@%s:%d-%d", file, start_line, end_line)
+
+    vim.fn.setreg("+", text)
+    print("Copied: " .. text)
+  end)
 end)
 
 --
@@ -259,10 +270,6 @@ vim.keymap.set("n", "<leader>hr", gitsigns.reset_hunk)
 vim.keymap.set("n", "<leader>tb", gitsigns.toggle_current_line_blame)
 vim.keymap.set("n", "]c", gitsigns.next_hunk)
 vim.keymap.set("n", "[c", gitsigns.prev_hunk)
-
-vim.pack.add({
-  { src = "https://github.com/sindrets/diffview.nvim" },
-})
 
 --
 -- OIL
