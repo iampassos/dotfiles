@@ -41,23 +41,17 @@ vim.keymap.set("n", "<C-Left>", ":vertical resize -5<CR>")
 vim.keymap.set("n", "<C-Right>", ":vertical resize +5<CR>")
 
 vim.keymap.set("x", "<leader>yy", function()
-  vim.schedule(function()
-    local start = vim.api.nvim_buf_get_mark(0, "<")
-    local finish = vim.api.nvim_buf_get_mark(0, ">")
+  local start_line = vim.fn.line("v")
+  local end_line = vim.fn.line(".")
 
-    local start_line = start[1]
-    local end_line = finish[1]
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
 
-    if start_line > end_line then
-      start_line, end_line = end_line, start_line
-    end
+  local file = vim.fn.expand("%:.")
+  local text = string.format("@%s:%d-%d", file, start_line, end_line)
 
-    local file = vim.fn.expand("%:.")
-    local text = string.format("@%s:%d-%d", file, start_line, end_line)
-
-    vim.fn.setreg("+", text)
-    print("Copied: " .. text)
-  end)
+  vim.fn.setreg("+", text)
 end)
 
 --
@@ -376,9 +370,3 @@ require("lualine").setup({
     lualine_z = { "location" },
   },
 })
-
---
--- OTHER
---
-
--- vim.opt.statusline = "%f %m %{FugitiveStatusline()} %= %l:%L %y"
